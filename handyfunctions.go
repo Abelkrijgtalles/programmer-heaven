@@ -3,10 +3,12 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"os"
 	"strings"
 )
 
-func input(p string, r *bufio.Reader) (string) {
+func input(p string) (string) {
+	var r = bufio.NewReader(os.Stdin)
 	fmt.Print(p)
 	var i, err = r.ReadString('\n')
 

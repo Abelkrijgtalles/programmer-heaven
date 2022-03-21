@@ -38,10 +38,8 @@ func handleInit(initCmd *flag.FlagSet, y *bool) {
 }
 
 func createProjectFile() {
-	var reader = bufio.NewReader(os.Stdin)
-
-	var projectName = input("What is the project name: ", reader)
-	var projectDesc = input("What is the project description: ", reader)
+	var projectName = input("What is the project name: ")
+	var projectDesc = input("What is the project description: ")
 
 	projectFile, err := os.Create("ph.json")
 	if err != nil {

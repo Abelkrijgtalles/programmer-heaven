@@ -34,6 +34,17 @@ func handleInit(initCmd *flag.FlagSet, y *bool) {
 		createProjectFile()
 	}
 
+	err := os.Mkdir("apps", 0750)
+
+	if err != nil && !os.IsExist(err) {
+		panic(err)
+	}
+
+	err = os.Mkdir("shared", 0750)
+
+	if err != nil && !os.IsExist(err) {
+		panic(err)
+	}
 }
 
 func createProjectFile() {

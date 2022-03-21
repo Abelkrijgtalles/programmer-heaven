@@ -5,3 +5,7 @@ Monorepo software to make a monorepo where apps are written for multiple program
 Create a new project without filling in the information.
 
 `./ph init -y`
+
+Create a new project
+
+`./ph init`

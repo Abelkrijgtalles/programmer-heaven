@@ -1,27 +1,29 @@
 package main
 
 import (
+	"bufio"
 	"flag"
-	"io"
-	"net/http"
+	"fmt"
 	"os"
 )
 
+type projectFile struct {
+	projectName string
+	projectDesc string
+}
+
 func getAndSaveDefaultProjectFile() {
-	resp, err := http.Get("https://raw.githubusercontent.com/Abelkrijgtalles/programmer-heaven/main/downloadable/ph.json")
-	if err != nil {
-		panic(err)
+	
+	var pF = projectFile{
+		projectName: "A awesome project",
+		projectDesc: "The best project i have ever made.",
 	}
-	body, err := io.ReadAll(resp.Body)
-	resp.Body.Close()
-	if err != nil {
-		panic(err)
-	}
+
 	projectFile, err := os.Create("ph.json")
 	if err != nil {
 		panic(err)
 	}
-	projectFile.WriteString(string(body))
+	projectFile.WriteString(fmt.Sprintf(`{"projectName":"%v","projectDesc":"%v"}`, pF.projectName, pF.projectDesc))
 }
 
 func handleInit(initCmd *flag.FlagSet, y *bool) {
@@ -29,5 +31,21 @@ func handleInit(initCmd *flag.FlagSet, y *bool) {
 	
 	if *y {
 		getAndSaveDefaultProjectFile()
+	} else {
+		createProjectFile()
 	}
+
+}
+
+func createProjectFile() {
+	var reader = bufio.NewReader(os.Stdin)
+
+	var projectName = input("What is the project name: ", reader)
+	var projectDesc = input("What is the project description: ", reader)
+
+	projectFile, err := os.Create("ph.json")
+	if err != nil {
+		panic(err)
+	}
+	projectFile.WriteString(fmt.Sprintf(`{"projectName":"%v","projectDesc":"%v"}`, projectName, projectDesc))
 }

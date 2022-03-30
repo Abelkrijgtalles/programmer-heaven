@@ -15,6 +15,8 @@ func getAndSaveDefaultProjectFile() {
 		panic(err)
 	}
 	projectFile.WriteString(fmt.Sprintf(`{"projectName":"%v","projectDesc":"%v"}`, projectName, projectDesc))
+
+	fmt.Println("Default project file created")
 }
 
 func handleInit(initCmd *flag.FlagSet, y *bool) {
@@ -48,4 +50,6 @@ func createProjectFile() {
 		panic(err)
 	}
 	projectFile.WriteString(fmt.Sprintf(`{"projectName":"%v","projectDesc":"%v"}`, projectName, projectDesc))
+
+	fmt.Println("Project file created")
 }

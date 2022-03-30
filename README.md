@@ -22,4 +22,4 @@ Add an app to the project (Requires to use `./ph init` first)
 
 Add an app to the project with no name (Requires to use `./ph init` first)
 
-`./ph add-app
+`./ph add-app`
